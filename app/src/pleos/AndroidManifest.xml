@@ -1,0 +1,4 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Required by the official NaviHelper 3.0.5 @RequiresPermission annotations. -->
+    <uses-permission android:name="pleos.car.permission.NAVI_ROUTE" />
+</manifest>

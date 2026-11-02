@@ -1,0 +1,17 @@
+.gradle/
+.tooling/
+**/build/
+local.properties
+.idea/
+*.iml
+*.jks
+*.keystore
+keystore.properties
+.env*
+!*.example
+captures/
+dist/
+apk/*
+!apk/README.md
+!apk/SHA256SUMS.txt
+!apk/*_BACKFM_release.apk
