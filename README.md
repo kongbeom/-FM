@@ -8,7 +8,7 @@
 
 ## GitHub 공모전 제출
 
-팀명은 **여운FM**, 앱 이름은 **BACKFM**입니다. 공개 제출 저장소는 [kongbeom/-FM](https://github.com/kongbeom/-FM)입니다.
+팀명은 **여운FM**, 앱 이름은 **여운FM**입니다. 공개 제출 저장소는 [kongbeom/-FM](https://github.com/kongbeom/-FM)입니다.
 
 제출 APK는 [apk/여운FM_BACKFM_release.apk](apk/여운FM_BACKFM_release.apk)입니다. `pleosRelease` 변형을 전용 Release 키로 서명한 버전 0.1.3(versionCode 4)입니다. 서명·설치·독립 실행을 확인했고, 이 APK를 대상으로 Android 계측 테스트 25개가 모두 통과했습니다.
 
