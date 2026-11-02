@@ -12,7 +12,7 @@
 
 ## 검증 결과
 
-0.1.3의 누적 검증은 **70개 통과**입니다. 이번 수정에서는 별도 가상기기에 직접 설치해 스크롤 회귀 3개를 포함한 Demo Android 전체 24개와 Pleos 미지원 1개를 재실행했습니다. 변경되지 않은 core 42개 및 WAV 3개의 기존 통과 결과를 재사용했습니다. 두 변형 Lint는 오류 0개입니다. 최초 버전의 1280×800/1280×480 렌더링·프로세스 재시작 복원 검증 이력도 유지합니다.
+0.1.4는 이름과 패키지를 변경한 뒤 자동 테스트 **70개를 모두 재실행해 통과**했습니다. core 42개, WAV 3개, 서명한 Pleos Release 대상 Android 계측 25개입니다. 두 변형 Lint는 오류 0개입니다. 기존 재생·귀가 식별·스크롤 회귀 검사도 새 패키지로 재검증했습니다.
 
 | 항목 | 결과 |
 |---|---|
@@ -28,15 +28,21 @@
 | 가족 3인 전체 흐름 | Espresso에서 참여·생성·공개·TTS 오류·고정 샘플·백그라운드·일시정지/재개·내비 우선·도착 정지·보관 재청취·삭제·동의 철회 통과 |
 | 실제 Pleos 서비스 부재 시 초기화 실패 | Pleos 변형에서 실제 SDK 연결이 성립하지 않아 10초 watchdog이 연결 시간 초과를 안내, 계측 1개 통과 |
 | Demo/Pleos Debug 빌드 | 빌드 성공 |
-| Release 빌드 | 여운FM 전용 키로 서명한 Pleos Release 0.1.3 생성, apksigner 검증 및 설치·독립 실행 성공 |
+| Release 빌드 | 기존 여운FM 키로 서명한 Pleos Release 0.1.4 생성, apksigner 검증 및 설치·독립 실행 성공 |
 | 최종 제출 APK 계측 | Release 변형과 같은 키로 서명한 Release 테스트 APK로 25개 통과, 실패 0 |
 | Lint | Demo/Pleos 각각 오류 0, 경고 13(기존 라이브러리 버전 알림 및 의도된 exported MBS) |
 
 ## 최종 제출 APK 검증
 
-2026-11-03에 `apk/여운FM_BACKFM_release.apk`를 최종 빌드했습니다. 앱 ID는 `ai.backfm`, 버전은 0.1.3(versionCode 4), minSdk 28, targetSdk 34이며 debuggable 플래그가 없습니다. APK Signature Scheme v2와 RSA 4096 전용 서명을 확인했습니다. 서명 키와 암호는 저장소에서 제외합니다.
+2026-11-03에 `apk/여운FM_여운FM_release.apk`를 최종 빌드했습니다. 앱 ID는 `ai.yeounfm`, 표시 이름은 **여운FM**, 버전은 0.1.4(versionCode 5), minSdk 28, targetSdk 34이며 debuggable 플래그가 없습니다. APK Signature Scheme v2와 RSA 4096 서명을 확인했으며 기존 서명 인증서의 SHA-256 지문을 유지했습니다. 서명 키와 암호는 저장소에서 제외합니다.
 
-사용자 가상기기와 분리된 공개 AOSP API 34 시험 기기에 이 파일을 설치하고, 같은 Release 변형으로 컴파일·서명한 계측 APK로 전체 **25개 통과**를 확인했습니다(92.039초). 여정·귀가 식별·가족 입력·방송 생성·재생 상태·미디어 제어·스크롤·Pleos 서비스 부재를 포함합니다. 테스트 종료 후 독립 실행도 `Status: ok`로 확인했습니다. 이 25개는 기존 케이스의 Release 재검증이므로 누적 고유 테스트 70개에 중복 가산하지 않습니다. 실제 Pleos 차량 검증을 뜻하지 않습니다.
+사용자 가상기기와 분리된 공개 AOSP API 34 시험 기기에 이 파일을 설치하고, 같은 Release 변형으로 컴파일·서명한 계측 APK로 전체 **25개 통과**를 확인했습니다(99.439초). 여정·귀가 식별·가족 입력·방송 생성·재생 상태·미디어 제어·스크롤·Pleos 서비스 부재를 포함합니다. 테스트 종료 후 독립 실행도 `Status: ok`로 확인했습니다. 실제 Pleos 차량 검증을 뜻하지 않습니다.
+
+## 0.1.4 여운FM 이름 통일
+
+앱 라벨, 화면, 알림 채널·재생 알림, 미디어 브라우저·세션 정보, 고정 샘플 대본·WAV, 소스 클래스·패키지·리소스, 빌드 설정·실행기·문서·APK 파일명을 변경했습니다. 코드 식별자는 `yeounfm`을 사용합니다. APK의 DEX와 내장 샘플 대본에서도 이전 이름이 남지 않았는지 확인했습니다. 문서의 화면 이미지는 새 앱에서 직접 렌더링해 1280×800의 홈·플레이어·대본과 1280×480의 홈·플레이어를 갱신했습니다. 1280×480 렌더링 검사 1개도 별도로 통과했으며 반복 실행이므로 고유 테스트 70개에는 중복 가산하지 않습니다.
+
+앱 ID 변경으로 기존 설치본과 별도로 설치됩니다. 기존 설치본의 데이터를 삭제하거나 자동 이전하지 않았습니다.
 
 ## 요구 시나리오 추적
 
@@ -96,7 +102,7 @@ Android 6개는 테스트 전용 JourneyProvider로 이벤트를 주입하고 �
 
 ## 0.1.3 스크롤 회귀 검사
 
-별도 데이터 디스크의 BACKFM_SCROLL_QA 가상기기에서 검증했습니다. 사용자가 실행한 가상기기의 데이터에는 테스트를 수행하지 않았습니다.
+별도 데이터 디스크의 시험용 가상기기에서 검증했습니다. 사용자가 실행한 가상기기의 데이터에는 테스트를 수행하지 않았습니다.
 
 - 화면을 아래로 스크롤한 뒤 감정을 선택해도 본문 위치가 유지됨.
 - 비동기 메시지 처리로 화면이 연속 갱신돼도 위치가 유지됨.
@@ -122,15 +128,15 @@ ProvenanceValidator는 내부 생성 템플릿의 참조를 검사합니다. 임
 
 ```powershell
 .\scripts\build-local.ps1 -Tasks @(':core:test', ':app:testDemoDebugUnitTest', ':app:connectedDemoDebugAndroidTest')
-.\scripts\build-local.ps1 -Tasks @(':app:connectedPleosDebugAndroidTest', '-Pandroid.testInstrumentationRunnerArguments.class=ai.backfm.NaviAvailabilityTest')
+.\scripts\build-local.ps1 -Tasks @(':app:connectedPleosDebugAndroidTest', '-Pandroid.testInstrumentationRunnerArguments.class=ai.yeounfm.NaviAvailabilityTest')
 ```
 
 NaviAvailabilityTest는 Pleos 내비 서비스가 **없는** 공개 Android 이미지 전용입니다. 실제 Pleos 이미지에서 실행할 때에는 내비 연결 성공을 기대하는 별도 테스트를 사용해야 합니다.
 
-서명 환경변수를 설정한 뒤 Release 계측 APK를 빌드하려면 다음을 사용합니다. `backfmTestBuildType`의 기본값은 `debug`이며, Release 검증에는 `release`로 지정합니다. 앱과 계측 APK의 서명 키가 같아야 합니다. Debug용 계측 APK를 Release 앱에 재사용하면 Kotlin 내부 함수 이름과 리소스가 달라 검증할 수 없습니다.
+서명 환경변수를 설정한 뒤 Release 계측 APK를 빌드하려면 다음을 사용합니다. `yeounfmTestBuildType`의 기본값은 `debug`이며, Release 검증에는 `release`로 지정합니다. 앱과 계측 APK의 서명 키가 같아야 합니다. Debug용 계측 APK를 Release 앱에 재사용하면 Kotlin 내부 함수 이름과 리소스가 달라 검증할 수 없습니다.
 
 ```powershell
-.\gradlew.bat -PbackfmTestBuildType=release :app:assemblePleosRelease :app:assemblePleosReleaseAndroidTest
+.\gradlew.bat -PyeounfmTestBuildType=release :app:assemblePleosRelease :app:assemblePleosReleaseAndroidTest
 ```
 
 중간 테스트에서 스크롤 후 UiAutomator 터치 좌표, 홈으로 보낸 Activity의 복귀 방식, 재생 상태에 따른 버튼 갱신 문제가 드러났습니다. View에 기반한 Espresso 입력과 실제 Activity 시작을 사용하고, 플레이어 버튼 갱신과 단일 Activity 복귀를 보완했습니다. 최종 수치에는 수정 후 실행만 반영합니다.

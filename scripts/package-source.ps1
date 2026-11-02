@@ -1,9 +1,9 @@
-$ErrorActionPreference = 'Stop'
+﻿$ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 $sourceRoot = Split-Path -Parent $PSScriptRoot
 $outputDir = Join-Path $sourceRoot 'dist'
 New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
-$output = [IO.Path]::GetFullPath((Join-Path $outputDir 'BACKFM_source.zip'))
+$output = [IO.Path]::GetFullPath((Join-Path $outputDir '여운FM_source.zip'))
 if (!$output.StartsWith($sourceRoot + [IO.Path]::DirectorySeparatorChar)) { throw 'Output must be inside this project.' }
 if (Test-Path -LiteralPath $output) { Remove-Item -LiteralPath $output }
 Push-Location $sourceRoot

@@ -1,8 +1,8 @@
-# BACKFM
+# 여운FM
 
 **같은 여행, 서로 다른 기억. 우리만의 귀갓길 라디오.**
 
-현재 버전: **0.1.3**. 같은 단계의 선택·상태 갱신 후 스크롤 위치를 유지하고 방송 만들기 문구를 ‘저장된 기억’으로 통일했습니다. 이전 버전의 재생·잔여시간·귀가 목적지 식별 보완도 포함합니다.
+현재 버전: **0.1.4**. 앱·알림·미디어 정보·고정 시연 음성·문서의 이름을 **여운FM**으로 통일했습니다. 코드 식별자는 `yeounfm`을 사용합니다. 스크롤 유지와 이전 버전의 재생·잔여시간·귀가 목적지 식별 보완도 포함합니다.
 
 확인한 방문 장소와 탑승자별 비공개 선택을 연결하는 Kotlin Android 앱입니다. 방송에서 같은 장소에 남은 서로 다른 마음을 공개합니다. UI 목업이 아니라 Room 저장소, 대본 생성, 미디어 서비스가 연결된 Android 프로젝트입니다.
 
@@ -10,16 +10,18 @@
 
 팀명은 **여운FM**, 앱 이름은 **여운FM**입니다. 공개 제출 저장소는 [kongbeom/-FM](https://github.com/kongbeom/-FM)입니다.
 
-제출 APK는 [apk/여운FM_BACKFM_release.apk](apk/여운FM_BACKFM_release.apk)입니다. `pleosRelease` 변형을 전용 Release 키로 서명한 버전 0.1.3(versionCode 4)입니다. 서명·설치·독립 실행을 확인했고, 이 APK를 대상으로 Android 계측 테스트 25개가 모두 통과했습니다.
+제출 APK는 [apk/여운FM_여운FM_release.apk](apk/여운FM_여운FM_release.apk)입니다. `pleosRelease` 변형을 전용 Release 키로 서명한 버전 0.1.4(versionCode 5)입니다. 서명·설치·독립 실행을 확인했고, 이 APK를 대상으로 Android 계측 테스트 25개가 모두 통과했습니다.
 
 심사 환경은 Android 9(API 28) 이상이며, 차량 기능은 Pleos SDK를 지원하는 환경에서 확인합니다. 최초 실행 시 Demo Mode의 춘천 여정으로 시연할 수 있습니다. 한국어 음성 생성에는 기기에 설치된 오프라인 한국어 TTS 음성이 필요하며, API 키는 필요하지 않습니다. 실제 내비 모드는 설정에서 내비 권한을 허용하고 연결합니다. 검증 환경은 공개 AOSP API 34 가상기기이며, 실제 Pleos 차량 검증은 별도입니다.
 
 최종 APK 설치·실행 명령은 다음과 같습니다. 동일 앱 ID의 Debug 버전과 서명이 다르므로 별도 시험 기기에서 설치를 확인하세요.
 
 ```powershell
-adb install -r "apk/여운FM_BACKFM_release.apk"
-adb shell am start -n ai.backfm/ai.backfm.ui.MainActivity
+adb install -r "apk/여운FM_여운FM_release.apk"
+adb shell am start -n ai.yeounfm/ai.yeounfm.ui.MainActivity
 ```
+
+앱 ID는 `ai.yeounfm`이며 Demo 변형은 `ai.yeounfm.demo`입니다. 이전 버전과 앱 ID가 달라 별도 앱으로 설치되며 기존 설치본의 기록을 자동으로 가져오지 않습니다.
 
 서명·업로드·제출 페이지 입력 방법은 [GitHub 제출 안내](docs/GITHUB_SUBMISSION.md)를 따르세요. `.gitignore`는 최종 이름의 Release APK를 포함하고, 로컬 도구·서명 키·Debug/Unsigned APK는 제외하도록 설정했습니다.
 
@@ -36,7 +38,7 @@ adb shell am start -n ai.backfm/ai.backfm.ui.MainActivity
 
 공개 AOSP 에뮬레이터에는 한국어 TTS 엔진이 없을 수 있습니다. 이 경우 생성된 대본과 명시적인 음성 오류가 표시됩니다. **고정 시연 샘플 듣기 · 현재 답변 미반영**으로 별도 제작된 한국어 샘플의 실제 재생을 검증할 수 있습니다. 이를 동적 생성 방송으로 표시하지 않습니다.
 
-개발 PC의 **RUN_BACKFM.cmd**는 `.tooling/demo-emulator.json`과 로컬 SDK·가상기기·Demo Debug APK가 준비된 환경 전용입니다. 해당 파일은 Git에 포함하지 않습니다. 다른 PC에서는 제출 Release APK를 설치하거나 아래 Android Studio 빌드 방법을 사용하세요.
+개발 PC의 **RUN_여운FM.cmd**는 `.tooling/demo-emulator.json`과 로컬 SDK·가상기기·Demo Debug APK가 준비된 환경 전용입니다. 이 로컬 설정·도구·Debug APK는 Git에서 제외합니다. 다른 PC에서는 제출 Release APK를 설치하거나 아래 Android Studio 빌드 방법을 사용하세요.
 
 ## 기술 스택
 
@@ -69,7 +71,7 @@ Android Studio에서 이 폴더를 열고 SDK 34와 Java 17을 지정합니다. 
 
 | 구분 | Demo APK | Pleos APK |
 |---|---|---|
-| 앱 ID | `ai.backfm.demo` | `ai.backfm` |
+| 앱 ID | `ai.yeounfm.demo` | `ai.yeounfm` |
 | 기본 모드 | 명시된 가상 춘천 여정 | 명시된 가상 춘천 여정 |
 | 실제 내비 모드 | 미지원 안내 + 수동 장소 추가 | NaviHelper 연결 및 콜백 수집 |
 | 주행 제한 | 일반 기기에서 명시적 시뮬레이션 | AAOS 시스템 CarUxRestrictionsManager 조회 |
@@ -107,14 +109,14 @@ AAOS에서는 Demo Mode라도 시스템 주행 제한을 무시하지 않습니�
 제출 APK는 전용 Release 키로 서명했습니다. 서명 키와 암호는 개발 PC에만 보관하며 저장소에 포함하지 않습니다. 이후 업데이트도 같은 키를 사용합니다. 재빌드할 때에는 보관한 keystore와 아래 환경변수를 로컬에서 설정합니다.
 
 ```powershell
-$env:BACKFM_KEYSTORE_PATH = 'C:\private\backfm-release.jks'
-$env:BACKFM_STORE_PASSWORD = '<로컬에서만 입력>'
-$env:BACKFM_KEY_ALIAS = '<키 별칭>'
-$env:BACKFM_KEY_PASSWORD = '<로컬에서만 입력>'
+$env:YEOUNFM_KEYSTORE_PATH = 'C:\private\yeounfm-release.jks'
+$env:YEOUNFM_STORE_PASSWORD = '<로컬에서만 입력>'
+$env:YEOUNFM_KEY_ALIAS = '<키 별칭>'
+$env:YEOUNFM_KEY_PASSWORD = '<로컬에서만 입력>'
 .\scripts\export-release.ps1 -TeamName '여운FM' -Flavor pleos
 ```
 
-성공 시 서명을 검증한 `apk/여운FM_BACKFM_release.apk`를 만듭니다. 서명 전 Release 빌드는 제출용 APK가 아닙니다. 이 스크립트는 이 PC의 `.tooling/` 도구를 이용하며, 다른 PC에서는 Android Studio의 **Generate Signed Bundle / APK** 또는 환경에 맞는 Gradle·apksigner를 사용하세요.
+성공 시 서명을 검증한 `apk/여운FM_여운FM_release.apk`를 만듭니다. 서명 전 Release 빌드는 제출용 APK가 아닙니다. 이 스크립트는 이 PC의 `.tooling/` 도구를 이용하며, 다른 PC에서는 Android Studio의 **Generate Signed Bundle / APK** 또는 환경에 맞는 Gradle·apksigner를 사용하세요.
 
 ## 관련 문서
 
@@ -125,7 +127,7 @@ $env:BACKFM_KEY_PASSWORD = '<로컬에서만 입력>'
 - [단계별 구현 상태](IMPLEMENTATION_STATUS.md)
 - [실제 플레이어 화면](docs/screens/player.png) / [서로 다른 기억 공개 대본](docs/screens/script.png)
 
-검증 결과: 누적 자동 테스트 **70개 통과**, 두 변형 Lint 오류 0. 이번 UI 수정은 별도 가상기기에서 Android 전체 24개와 Pleos 미지원 1개를 재검증했으며, 변경 없는 단위 테스트 45개 결과를 재사용했습니다. 자세한 내용은 [검증 보고서](TEST_REPORT.md)에 기록합니다. 저장소의 `apk/`에는 서명한 최종 제출 APK와 SHA-256 체크섬을 제공합니다. 로컬 SDK·캐시·서명 키·Debug/Unsigned APK는 Git에서 제외합니다. `dist/BACKFM_source.zip`은 로컬에서 생성하는 소스 배포본이며 저장소에는 프로젝트 소스를 직접 포함합니다.
+검증 결과: 자동 테스트 **70개 통과**(core 42 + WAV 3 + 최종 Release Android 25), 두 변형 Lint 오류 0. 이름과 패키지를 변경한 0.1.4에서 모두 재실행했습니다. 자세한 내용은 [검증 보고서](TEST_REPORT.md)에 기록합니다. 저장소의 `apk/`에는 서명한 최종 제출 APK와 SHA-256 체크섬을 제공합니다. 로컬 SDK·캐시·서명 키·Debug/Unsigned APK는 Git에서 제외합니다. `dist/여운FM_source.zip`은 로컬에서 생성하는 소스 배포본이며 저장소에는 프로젝트 소스를 직접 포함합니다.
 
 음성 준비 중에는 **준비 완료 후 재생 취소**로 자동 시작을 취소할 수 있습니다. 준비가 완료되어도 일시정지를 유지하며 직접 재생을 누른 경우에만 시작합니다. 차량 미디어 목록과 앱 플레이어는 같은 잔여시간 제한을 적용하고, 합성 중 경과한 시간도 차감합니다. 이어 듣기·처음부터 재생할 때에도 현재 잔여시간을 다시 확인합니다.
 

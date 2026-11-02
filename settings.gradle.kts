@@ -8,5 +8,5 @@ dependencyResolutionManagement {
         }
     }
 }
-rootProject.name = "BACKFM"
+rootProject.name = "여운FM"
 include(":core", ":app")

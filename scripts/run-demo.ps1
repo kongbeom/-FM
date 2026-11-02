@@ -1,13 +1,13 @@
-param([int]$Port = 5560)
+﻿param([int]$Port = 5560)
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
-$apk = Join-Path $projectRoot 'apk\BACKFM_demo_debug.apk'
+$apk = Join-Path $projectRoot 'apk\여운FM_demo_debug.apk'
 $runtimeSettings = Join-Path $projectRoot '.tooling\demo-emulator.json'
 if (!(Test-Path -LiteralPath $runtimeSettings)) { throw 'Local emulator setup is missing. Use Android Studio as described in README.md.' }
 $settings = Get-Content -LiteralPath $runtimeSettings -Raw | ConvertFrom-Json
 $driveName = 'S:'
 if (Test-Path "$driveName\") {
-    $mappedApk = "$driveName\apk\BACKFM_demo_debug.apk"
+    $mappedApk = "$driveName\apk\여운FM_demo_debug.apk"
     if (!(Test-Path -LiteralPath $mappedApk) -or (Get-FileHash -LiteralPath $mappedApk).Hash -ne (Get-FileHash -LiteralPath $apk).Hash) {
         throw 'S: is in use by another folder. Close that mapping before using this local launcher.'
     }
@@ -44,8 +44,9 @@ for ($attempt = 0; $attempt -lt 120; $attempt++) {
 if (!$booted) { throw 'Android did not finish starting. Check .tooling/demo-emulator-error.log.' }
 $name = & $adb -s $serial emu avd name
 if ($name -notcontains $settings.avdName) { throw 'The selected emulator belongs to another AVD; nothing was installed.' }
-& $adb -s $serial install -r "$driveName\apk\BACKFM_demo_debug.apk"
+Copy-Item -LiteralPath $apk -Destination "$driveName\.tooling\yeounfm-demo.apk" -Force
+& $adb -s $serial install -r "$driveName\.tooling\yeounfm-demo.apk"
 if ($LASTEXITCODE -ne 0) { throw 'APK installation failed.' }
-& $adb -s $serial shell am start -n ai.backfm.demo/ai.backfm.ui.MainActivity
-if ($LASTEXITCODE -ne 0) { throw 'Could not open BACKFM.' }
-Write-Host 'BACKFM is open in the emulator. Keep the S: mapping while the emulator is running.'
+& $adb -s $serial shell am start -n ai.yeounfm.demo/ai.yeounfm.ui.MainActivity
+if ($LASTEXITCODE -ne 0) { throw 'Could not open 여운FM.' }
+Write-Host '여운FM is open in the emulator. Keep the S: mapping while the emulator is running.'

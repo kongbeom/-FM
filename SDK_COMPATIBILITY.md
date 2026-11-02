@@ -43,7 +43,7 @@ Pleos 빠른 시작의 SDK API 34 / minSdk 28 이상을 반영했습니다. Java
 
 연결 중 `getDestinationInfo()`를 15초마다 재요청하고 수신 시점부터 경과 시간을 차감합니다. 조회 실패·같은 여정 재연결은 기존 잔여시간을 초기화하지 않습니다. 0.1.2에서 방문 기록 종료 후에도 사용자가 귀가 목적지를 연결한 경우는 도착/ETA 확인만 유지합니다. 연결 해제·여정 삭제·동의 철회·프로세스 종료 시 수신을 중단합니다. 실제 Pleos 응답 시점과 경로 변경 전달은 미검증입니다.
 
-[Pleos Music/Audio 가이드](https://document.pleos.ai/docs/pleos-only/vehicle-app-developer-guide/music-audio-app-developement-guide)는 에피소드형 음성을 Podcast로 분류하고 `MediaBrowserService`와 `MediaSession`을 요구합니다. BACKFM은 브랜드명과 별개로 Podcast 브라우징 트리를 제공합니다. `android:appCategory="audio"`, launchable 메타데이터 및 automotive media description을 선언했습니다.
+[Pleos Music/Audio 가이드](https://document.pleos.ai/docs/pleos-only/vehicle-app-developer-guide/music-audio-app-developement-guide)는 에피소드형 음성을 Podcast로 분류하고 `MediaBrowserService`와 `MediaSession`을 요구합니다. 여운FM은 브랜드명과 별개로 Podcast 브라우징 트리를 제공합니다. `android:appCategory="audio"`, launchable 메타데이터 및 automotive media description을 선언했습니다.
 
 Media3 자체의 MBS 대체 수용 여부를 추정하지 않고 API 28~34에 존재하는 플랫폼 MBS·MediaSession을 직접 사용했습니다. 시스템 play/pause/stop/seek/previous/next를 세션 callback에 연결합니다. previous는 처음부터 재생, next는 현재 에피소드 종료입니다. 저장 목록으로 들어가 직접 다음 에피소드를 선택할 수 있습니다.
 

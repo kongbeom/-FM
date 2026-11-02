@@ -1,5 +1,5 @@
 <resources>
-    <item name="backfm_content_scroll" type="id" />
-    <item name="backfm_menu_scroll" type="id" />
-    <item name="backfm_tabs_scroll" type="id" />
+    <item name="yeounfm_content_scroll" type="id" />
+    <item name="yeounfm_menu_scroll" type="id" />
+    <item name="yeounfm_tabs_scroll" type="id" />
 </resources>

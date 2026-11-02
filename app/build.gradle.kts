@@ -1,13 +1,13 @@
 plugins { id("com.android.application"); kotlin("android"); id("com.google.devtools.ksp") }
 android {
-    namespace = "ai.backfm"
+    namespace = "ai.yeounfm"
     compileSdk = 34
     defaultConfig {
-        applicationId = "ai.backfm"
+        applicationId = "ai.yeounfm"
         minSdk = 28
         targetSdk = 34
-        versionCode = 4
-        versionName = "0.1.3"
+        versionCode = 5
+        versionName = "0.1.4"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     flavorDimensions += "vehicle"
@@ -16,19 +16,19 @@ android {
         create("pleos") { dimension = "vehicle" }
     }
     buildFeatures { buildConfig = true }
-    testBuildType = providers.gradleProperty("backfmTestBuildType").getOrElse("debug")
+    testBuildType = providers.gradleProperty("yeounfmTestBuildType").getOrElse("debug")
     compileOptions { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
     kotlinOptions { jvmTarget = "17" }
     buildTypes {
         release {
             isMinifyEnabled = false
-            val keyPath = System.getenv("BACKFM_KEYSTORE_PATH")
+            val keyPath = System.getenv("YEOUNFM_KEYSTORE_PATH")
             if (!keyPath.isNullOrBlank()) {
                 signingConfig = signingConfigs.create("submission") {
                     storeFile = file(keyPath)
-                    storePassword = System.getenv("BACKFM_STORE_PASSWORD")
-                    keyAlias = System.getenv("BACKFM_KEY_ALIAS")
-                    keyPassword = System.getenv("BACKFM_KEY_PASSWORD")
+                    storePassword = System.getenv("YEOUNFM_STORE_PASSWORD")
+                    keyAlias = System.getenv("YEOUNFM_KEY_ALIAS")
+                    keyPassword = System.getenv("YEOUNFM_KEY_PASSWORD")
                 }
             }
         }

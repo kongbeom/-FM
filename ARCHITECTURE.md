@@ -1,11 +1,11 @@
-# BACKFM 아키텍처
+# 여운FM 아키텍처
 
 ## 구성
 
 ```text
 MainActivity (네이티브 View, 화면별 이벤트)
       ↓                  ↑ StateFlow<UiState>
-BackfmViewModel (단방향 상태, 입력 검증, 작업 직렬화)
+YeounFmViewModel (단방향 상태, 입력 검증, 작업 직렬화)
       ├── JourneyProvider
       │     ├── DemoJourneyProvider
       │     └── PlatformJourneyProvider (demo / pleos 소스셋)
@@ -44,7 +44,7 @@ SafetyMonitor → 실제 AAOS 제한 상태 / 일반 기기 Demo 시뮬레이션
 
 0.1.1부터 `PlaybackRequestState`가 설정 조회·보관함 조회·음성 합성·MediaPlayer 준비 전체에 하나의 요청 세대 번호를 적용합니다. 일시정지는 마지막 재생 의도를 꺼서 준비가 끝나도 일시정지 상태를 유지하며, 준비 중 재생을 다시 누르면 완료 후 재생하도록 변경합니다. 종료와 방송 교체는 이전 요청을 무효화하고 취소합니다. 이전 요청이 늦게 완료되거나 오류를 반환해도 현재 방송 상태를 바꾸지 않습니다. 화면·알림·MediaSession이 동일한 의도를 사용합니다.
 
-`BackfmApp.rideTime`은 모든 재생 진입점이 공유하는 `RideTimeBudget`입니다. Android `SystemClock.elapsedRealtime`에 ETA 수신 시점을 고정하고 합성·보관함 조회·일시정지 중 경과 시간도 차감합니다. 화면에서 Intent에 남은 시간을 복사하지 않으며, 차량 보관함도 시간 제한을 초기화하지 않습니다. 재생 직전과 재생 중에는 최신 수신값에서 경과 시간을 차감한 잔여시간을 적용합니다. 이어 듣기는 남은 음성 길이, 처음부터 듣기는 전체 길이로 검사하고 탐색 후 재개에도 같은 검사를 수행합니다.
+`YeounFmApp.rideTime`은 모든 재생 진입점이 공유하는 `RideTimeBudget`입니다. Android `SystemClock.elapsedRealtime`에 ETA 수신 시점을 고정하고 합성·보관함 조회·일시정지 중 경과 시간도 차감합니다. 화면에서 Intent에 남은 시간을 복사하지 않으며, 차량 보관함도 시간 제한을 초기화하지 않습니다. 재생 직전과 재생 중에는 최신 수신값에서 경과 시간을 차감한 잔여시간을 적용합니다. 이어 듣기는 남은 음성 길이, 처음부터 듣기는 전체 길이로 검사하고 탐색 후 재개에도 같은 검사를 수행합니다.
 
 같은 여정 재연결과 갱신 실패는 기존 카운트다운을 초기화하지 않습니다. 내비 연결 중에는 15초마다 목적지/ETA 조회를 요청하며 수집 종료 시 해제합니다. 수신된 ETA가 처음부터 없거나 프로세스 재시작으로 관찰값이 없는 상태는 명시적인 미확인 상태입니다. 이 경우 임의 이동시간을 만들지 않습니다. 실제 Pleos의 응답 주기·경로 변경은 여전히 환경 검증 대상입니다.
 

@@ -1,6 +1,6 @@
 # APK 산출물
 
-- [여운FM_BACKFM_release.apk](여운FM_BACKFM_release.apk): 여운FM 팀의 최종 제출 APK. Pleos SDK를 포함하는 `pleosRelease`, 버전 0.1.3(versionCode 4), 전용 Release 키로 서명했습니다.
+- [여운FM_여운FM_release.apk](여운FM_여운FM_release.apk): 여운FM 팀의 최종 제출 APK. Pleos SDK를 포함하는 `pleosRelease`, 버전 0.1.4(versionCode 5), 전용 Release 키로 서명했습니다.
 - [SHA256SUMS.txt](SHA256SUMS.txt): 최종 제출 APK의 SHA-256 체크섬.
 
 Android 9(API 28) 이상에서 설치할 수 있습니다. 일반 Android에서는 Demo Mode로 시연하고, 실제 차량 내비 기능은 Pleos 지원 환경에서 권한을 허용한 뒤 연결합니다. 실행 방법과 필요한 설정은 [루트 README](../README.md)를 참고하세요.

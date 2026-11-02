@@ -1,6 +1,6 @@
 # 오디오 자산
 
-`app/src/main/assets/fixed-demo.wav`는 2026-11-02 개발 PC에서 Windows SAPI의 설치된 Microsoft Heami 한국어 음성을 사용해 합성했습니다. 대본은 BACKFM 시연을 위해 직접 작성했으며 음악·타인의 녹음·상시 수집한 대화는 포함하지 않습니다. 대본 원문은 같은 폴더의 `fixed-demo-script.txt`입니다.
+`app/src/main/assets/fixed-demo.wav`는 2026-11-03 개발 PC에서 Windows SAPI의 설치된 Microsoft Heami 한국어 음성을 사용해 여운FM 이름으로 다시 합성했습니다. 대본은 여운FM 시연을 위해 직접 작성했으며 음악·타인의 녹음·상시 수집한 대화는 포함하지 않습니다. 대본 원문은 같은 폴더의 `fixed-demo-script.txt`입니다.
 
 파일은 사용자 답변을 반영하지 않는 **고정 시연 샘플**입니다. 오디오 시작과 종료에서도 샘플임을 밝힙니다. 앱 안에서도 별도 제목과 `fixed-sample` ID로 표시하고 사용자가 누른 경우에만 재생합니다. 샘플을 사용자 방송의 오디오로 보관하지 않습니다.
 
